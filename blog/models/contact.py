@@ -28,9 +28,9 @@ class Phone(db.Model):
         default=ContactType.personal,
         nullable=False
     )
-    country_code = db.Column(db.String(7), nullable=False)
-    number = db.Column(db.String(20), nullable=False)
-    extension = db.Column(db.String(7))
+    country_code = db.Column(db.Integer, nullable=False)
+    number = db.Column(db.Integer, nullable=False)
+    extension = db.Column(db.Integer)
     is_primary = db.Column(db.Boolean, nullable=False)
     user = db.Column(db.Integer, db.ForeignKey('users.pk'), nullable=False)
 
