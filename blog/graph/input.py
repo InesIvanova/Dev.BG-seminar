@@ -12,7 +12,7 @@ class Iphone(graphene.InputObjectType):
 class IEmail(graphene.InputObjectType):
     type = graphene.String()
     email = graphene.String(required=True)
-    is_primary = graphene.Boolean(default=True)
+    is_primary = graphene.Boolean(default_value=True)
 
 
 class IUser(graphene.InputObjectType):
