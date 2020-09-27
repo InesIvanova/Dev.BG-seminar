@@ -10,7 +10,9 @@ def save_user(user_data):
     return user.pk
 
 
-def save_email(email_data, user_pk):
-    email = Email(email=email_data.email, user=user_pk, is_primary=email_data.is_primary)
-    db.session.add(email)
-    db.session.flush()
+def save_email(user_data, user_pk):
+    email_data = user_data.get("email")
+    if email_data:
+        email = Email(email=email_data.email, user=user_pk, is_primary=email_data.is_primary)
+        db.session.add(email)
+        db.session.flush()

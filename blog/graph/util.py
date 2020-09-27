@@ -14,12 +14,10 @@ class CreateUser(graphene.Mutation):
 
     person = graphene.Field(User)
 
+    @validate_email
     def mutate(root, info, user_data=None):
         user = User(first_name=user_data.first_name, last_name=user_data.last_name)
         user_pk = save_user(user)
-        if user_data.email:
-            if not validate_email(user_data.email.email):
-                raise InvalidInput("Email not valid")
-            save_email(user_data.email, user_pk)
+        save_email(user_data.email, user_pk)
         db.session.commit()
         return CreateUser(user)
